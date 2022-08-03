@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
+import Form from './Form';
+import Header from './Header';
 
-function App() {
+const App = () => {
 
   const [imageURL , setImage] = useState('')
   const [userLong, setLongitude] = useState('')
   const [userLat, setLatitude] = useState('')
   const [userDate, setDate] = useState('')
+ 
 
 
   const apiKey = process.env.REACT_APP_API_KEY
 
 
  const fetchData = () => {
-  console.log('fetch',userLat, userLong)
-  fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=2014-08-01&&dim=0.10&api_key=${apiKey}`)
+  console.log('userDateinFetch',userDate)
+  fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=${userDate}&&dim=0.10&api_key=${apiKey}`)
     .then(res => res.json())
     .then(data => {
     setImage(data.url);
@@ -22,7 +25,8 @@ function App() {
 }
     
 
-const getCoords = () => {
+const getCoords = (e, date) => {
+  e.preventDefault()
 
   const options = {
     enableHighAccuracy: true,
@@ -34,6 +38,8 @@ const getCoords = () => {
     const crd = pos.coords;
     setLatitude(crd.latitude.toFixed(2).toString())
     setLongitude(crd.longitude.toFixed(2).toString())
+    console.log('userdateinSucess', date)
+    setDate(date)
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
@@ -49,16 +55,18 @@ const getCoords = () => {
   }
 
   useEffect(() => {
-    if(userLong && userLat) {
+    if(userLong && userDate) {
     fetchData()
     }
-   },[userLat, userLong])
+   },[userLat, userLong, userDate])
 
   return (
     <>
-   <p>Satellite 🛰</p>
-  <img src={imageURL}></img>
-  <button onClick={getCoords}></button>
+    <Header />
+   <div className='image-wrapper'>
+  {userLat && userLong && userDate ? <img className='satellite-image' src={imageURL}></img> : <p>Your image will load here! <br></br> Expected wait: 5-10 seconds</p>}
+  </div>
+  <Form getCoords={getCoords} userDate={userDate} setDate={setDate}/>
    </>
   )
   }
