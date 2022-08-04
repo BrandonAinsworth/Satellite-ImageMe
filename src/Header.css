@@ -1,0 +1,14 @@
+.header-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-h1 {
+  font-size: 5em;
+  font-weight: bolder;
+}
+
+.satellite-emoji {
+  font-size: 5em;
+  margin-top: 63px;
+}
