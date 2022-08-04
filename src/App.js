@@ -17,7 +17,7 @@ const App = () => {
 
  const fetchData = () => {
   console.log('userDateinFetch',userDate)
-  fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=${userDate}&&dim=0.10&api_key=${apiKey}`)
+  fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=${userDate}&&dim=0.12&api_key=${apiKey}`)
     .then(res => res.json())
     .then(data => {
     setImage(data.url);
