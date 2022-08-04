@@ -1,5 +1,5 @@
 html {
-  background-color: rgba(38, 35, 67, 0.539);
+  background-color: rgba(55, 45, 144, 0.69);
   color: rgb(248, 236, 5);
 }
 
@@ -15,8 +15,8 @@ html {
   border: 1px solid black;
   border-radius: 3%;
   width: 60.875vw;
-  /* aspect-ratio: auto 387 / 387; */
   height: 60.875vh;
+  /* aspect-ratio: auto 387 / 387; */
   /* height: 40vh;
   width: 25vw; */
 }
