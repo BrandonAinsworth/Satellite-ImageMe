@@ -1,5 +1,5 @@
 .saved-wrapper {
-  padding-top: 3em;
+    padding-top: 3em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -7,4 +7,13 @@
     grid-column-gap: 20px;
     grid-auto-rows: auto;
     grid-auto-columns: auto;
+    background-color: #c2c2c2;
+    color: rgb(52, 64, 193);
+}
+
+.none-saved {
+    font-weight: bold;
+    font-size: 3.5em;
+    text-align: center;
+    color:rgb(52, 64, 193)
 }

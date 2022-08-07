@@ -86,10 +86,10 @@ const App = () => {
       <> 
      <img className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> 
      <p className='coordinates'>Your coordinates are:<br></br>
-      Latitude: {userLat}<br></br>
-      Longitude: {userLong}<br></br>
+     <b>Latitude:</b> {userLat}<br></br>
+     <b>Longitude:</b> {userLong}<br></br>
     </p>
-     <button value= { imageURL } onClick= { saveImage }> Save this Image! 
+     <button className='save-button' value= { imageURL } onClick= { saveImage }> Save this Image! 
      </button>
      </> 
     :        

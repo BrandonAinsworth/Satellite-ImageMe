@@ -20,7 +20,8 @@ return (
     {photos}
   </div>
   </>
-  : <p>No saved Images!</p>
+  :
+     <p className="none-saved">No saved Images!</p>
   }
   </>
 )

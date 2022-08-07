@@ -35,14 +35,18 @@ e.preventDefault()
   return (
     <>
     <div className='apod-wrapper'>
+      <div className='wrapper-box'>
       <p>Want to see more images? Select any date below!</p>
       <Form setDate={setDate} userDate={userDate} fetchSpecific={fetchSpecific}/>
-    <p>{apod.title}</p>
+      </div>
+    <p className='apod-title'>{apod.title}</p>
     <img className='apod-image' src={apod.url}></img>
-    <button value={apod.url} onClick={saveImage}>SAVE THIS IMAGE!</button>
-    <p>{apod.explanation}</p>
-    <p>{apod.copyright}</p>
-    <p>{apod.date}</p>
+    <button className='apod-button' value={apod.url} onClick={saveImage}>Save this Image!</button>
+    <div className='info-wrapper'>
+      <p className='apod-explanation'><b>Explanation: </b>{apod.explanation}</p>
+      <p className='apod-copyright'><b>Copyright:</b> {apod.copyright}</p>
+      <p className='apod-date'><b>Date:</b> {apod.date}</p>
+    </div>
     </div>
     </>
   )
