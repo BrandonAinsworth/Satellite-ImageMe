@@ -28,6 +28,7 @@ const App = () => {
     fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=${userDate}&&dim=0.12&api_key=${apiKey}`)
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         setImage(data.url);
       })
   }
@@ -83,8 +84,8 @@ const App = () => {
     <div className = 'image-wrapper'> {userLat && userLong && userDate 
     ?
       <> 
-     <img className= 'satellite-image'alt= 'your location based on coordinates' src= {imageURL}></img> 
-     <p>Your coordinates are:<br></br>
+     <img className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> 
+     <p className='coordinates'>Your coordinates are:<br></br>
       Latitude: {userLat}<br></br>
       Longitude: {userLong}<br></br>
     </p>
@@ -93,7 +94,7 @@ const App = () => {
      </> 
     :        
     loading ? <img className='load-image' src={asset}></img> : <>
-      <p>Your image will load here! <br></br> Expected wait: 5-10 seconds</p>
+      <p className='user-notice'>Your image will load here!<br></br><br></br><b>Expected wait:</b> 5-10 seconds</p>
       </>
     }
     </div> 

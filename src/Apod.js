@@ -35,7 +35,7 @@ e.preventDefault()
   return (
     <>
     <div className='apod-wrapper'>
-      <p>Want to see a more images? Select any date below!</p>
+      <p>Want to see more images? Select any date below!</p>
       <Form setDate={setDate} userDate={userDate} fetchSpecific={fetchSpecific}/>
     <p>{apod.title}</p>
     <img className='apod-image' src={apod.url}></img>
