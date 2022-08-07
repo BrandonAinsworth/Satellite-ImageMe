@@ -5,6 +5,7 @@ import Header from './Header';
 import Nav from './Nav';
 import Apod from './Apod';
 import SavedImg from './SavedImg';
+import About from './About';
 import asset from './assets/satellite_transmitting.gif'
 import { Route, Switch } from 'react-router-dom';
 
@@ -103,8 +104,11 @@ const App = () => {
     <Apod apiKey = { apiKey } saveImage= { saveImage } setSavedImage= { setSavedImage } savedImages= { savedImages }
     /> 
     </Route> 
-    <Route path = '/savedphotos'> { console.log(savedImages)} 
+    <Route path = '/savedphotos'>
     <SavedImg savedImages= { savedImages }/> 
+    </Route>
+    <Route path = '/about'>
+      <About />
     </Route>
     </Switch> 
  </>
