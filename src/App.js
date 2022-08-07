@@ -5,6 +5,7 @@ import Header from './Header';
 import Nav from './Nav';
 import Apod from './Apod';
 import SavedImg from './SavedImg';
+import About from './About';
 import asset from './assets/satellite_transmitting.gif'
 import { Route, Switch } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ const App = () => {
     fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=${userDate}&&dim=0.12&api_key=${apiKey}`)
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         setImage(data.url);
       })
   }
@@ -53,7 +55,6 @@ const App = () => {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-    setLoading(false)
     setLatitude('')
     setLongitude('')
   }
@@ -83,8 +84,8 @@ const App = () => {
     <div className = 'image-wrapper'> {userLat && userLong && userDate 
     ?
       <> 
-     <img className= 'satellite-image'alt= 'your location based on coordinates' src= {imageURL}></img> 
-     <p>Your coordinates are:<br></br>
+     <img className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> 
+     <p className='coordinates'>Your coordinates are:<br></br>
       Latitude: {userLat}<br></br>
       Longitude: {userLong}<br></br>
     </p>
@@ -92,8 +93,8 @@ const App = () => {
      </button>
      </> 
     :        
-    loading ? <img src={asset}></img> : <>
-      <p>Your image will load here! <br></br> Expected wait: 5-10 seconds</p>
+    loading ? <img className='load-image' src={asset}></img> : <>
+      <p className='user-notice'>Your image will load here!<br></br><br></br><b>Expected wait:</b> 5-10 seconds</p>
       </>
     }
     </div> 
@@ -104,8 +105,11 @@ const App = () => {
     <Apod apiKey = { apiKey } saveImage= { saveImage } setSavedImage= { setSavedImage } savedImages= { savedImages }
     /> 
     </Route> 
-    <Route path = '/savedphotos'> { console.log(savedImages)} 
+    <Route path = '/savedphotos'>
     <SavedImg savedImages= { savedImages }/> 
+    </Route>
+    <Route path = '/about'>
+      <About />
     </Route>
     </Switch> 
  </>

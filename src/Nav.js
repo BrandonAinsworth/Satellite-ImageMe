@@ -17,6 +17,9 @@ const Nav = () => {
       <Link to='/savedphotos'>
         <p className="nav-element">Saved Photos</p>
       </Link>
+      <Link to='/about'>
+        <p className="nav-element">About</p>
+      </Link>
     </div>
   )
 }
