@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Apod.css'
 
-const Astronomy = ({apiKey}) => {
+const Astronomy = ({apiKey, saveImage, savedImages, setSavedImage}) => {
 
 const [apod, setApod] = useState({})
 
@@ -20,6 +20,7 @@ const [apod, setApod] = useState({})
     <div className='apod-wrapper'>
     <p>{apod.title}</p>
     <img src={apod.url}></img>
+    <button value={apod.url} onClick={saveImage}>SAVE THIS IMAGE!</button>
     <p>{apod.explanation}</p>
     <p>{apod.copyright}</p>
     <p>{apod.date}</p>
