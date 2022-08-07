@@ -7,7 +7,7 @@ const photos = savedImages.map(image => {
   return (
     <Photos
     src={image}
-    key={Date.now()}
+    key={Math.random() * 100}
     />
   )
 })

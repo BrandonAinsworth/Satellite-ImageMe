@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import './Form.css';
-
+import dayjs from 'dayjs'
 
 const Form = ({getCoords, setDate, userDate, fetchSpecific, loading, setLoading}) => {
 
 
 const location = useLocation()
+const [formDate, setFormDate] = useState(dayjs().format('YYYY/MM/DD').split('/').join('-'))
+// let formDate = dayjs().format('YYYY/MM/DD').split('/').join('-')
 
 const configureDate = (date) => {
   setDate(date)
@@ -15,26 +17,38 @@ const configureDate = (date) => {
 const submissionType = (e) => {
   console.log(location.pathname)
   if(location.pathname === '/') {
-    setLoading = true
+    setLoading(true)
    return getCoords(e, userDate)
   } else {
    return fetchSpecific(e)
   }
 }
 
+const maxDateMaker = () => {
+  if(location.pathname === '/') {
+    setFormDate(dayjs().subtract(7, 'month').format('YYYY/MM/DD').split('/').join('-'))
+  } else {
+    setFormDate(dayjs().format('YYYY/MM/DD').split('/').join('-'))
+  }
+}
+
+useEffect(() => {
+  console.log('hello form')
+  console.log(formDate)
+  maxDateMaker()
+},[maxDateMaker, formDate])
+
+
 return (
   <>
 <div className="form-wrapper">
   <input
     type='date'
+    max={formDate}
     onChange={(event) => configureDate(event.target.value)}
   />
 <button onClick={(e) => { submissionType(e) }}>To Infinity!
 </button>
-{/* <button onClick={(e) => {
-  console.log('clickDATE',userDate)
-   getCoords(e, userDate)}}>To Infinity!
-</button> */}
 </div>
   </>
 )
