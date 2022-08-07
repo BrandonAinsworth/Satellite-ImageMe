@@ -6,9 +6,7 @@ const Photos = ({src}) => {
 
 return (
   <>
-  <div className="saved-wrapper">
   <img className='saved-photo' src={src}></img>
-  </div>
   </>
 )
 

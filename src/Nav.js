@@ -8,6 +8,9 @@ const Nav = () => {
 
   return (
     <div className="nav-bar">
+      <Link to='/'>
+      <p className="nav-element">ImageMe</p>
+      </Link>
       <Link to='/dailyphoto'>
       <p className="nav-element">Photo of the Day</p>
       </Link>

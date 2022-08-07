@@ -1,6 +1,6 @@
 import React from "react";
 import Photos from "./Photos";
-
+import './SavedImg.css'
 const SavedImg = ({savedImages}) => {
 
 const photos = savedImages.map(image => {
@@ -16,7 +16,7 @@ const photos = savedImages.map(image => {
 return (
   <>
   {savedImages.length !== 0 ? <>
-  <div>
+  <div className="saved-wrapper">
     {photos}
   </div>
   </>

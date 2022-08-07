@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import './Form.css';
 
 
-const Form = ({getCoords, setDate, userDate, fetchSpecific}) => {
+const Form = ({getCoords, setDate, userDate, fetchSpecific, loading, setLoading}) => {
 
 
 const location = useLocation()
@@ -15,6 +15,7 @@ const configureDate = (date) => {
 const submissionType = (e) => {
   console.log(location.pathname)
   if(location.pathname === '/') {
+    setLoading = true
    return getCoords(e, userDate)
   } else {
    return fetchSpecific(e)
