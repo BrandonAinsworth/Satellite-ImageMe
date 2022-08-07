@@ -41,13 +41,16 @@ useEffect(() => {
 return (
   <>
 <div className="form-wrapper">
+  <div className='action-wrapper'>
   <input
+    className="date-field"
     type='date'
     max={formDate}
     onChange={(event) => configureDate(event.target.value)}
   />
-<button onClick={(e) => { submissionType(e) }}>To Infinity!
+<button className="btn" onClick={(e) => { submissionType(e) }}>To Infinity!
 </button>
+</div>
 </div>
   </>
 )
