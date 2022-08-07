@@ -8,7 +8,6 @@ const Form = ({getCoords, setDate, userDate, fetchSpecific, loading, setLoading}
 
 const location = useLocation()
 const [formDate, setFormDate] = useState(dayjs().format('YYYY/MM/DD').split('/').join('-'))
-// let formDate = dayjs().format('YYYY/MM/DD').split('/').join('-')
 
 const configureDate = (date) => {
   setDate(date)

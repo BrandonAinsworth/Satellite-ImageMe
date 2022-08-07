@@ -53,7 +53,6 @@ const App = () => {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-    setLoading(false)
     setLatitude('')
     setLongitude('')
   }
@@ -92,7 +91,7 @@ const App = () => {
      </button>
      </> 
     :        
-    loading ? <img src={asset}></img> : <>
+    loading ? <img className='load-image' src={asset}></img> : <>
       <p>Your image will load here! <br></br> Expected wait: 5-10 seconds</p>
       </>
     }

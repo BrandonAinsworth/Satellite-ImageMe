@@ -22,3 +22,8 @@ html {
   /* height: 40vh;
   width: 25vw; */
 }
+
+.load-image {
+  border: 1px solid black;
+  border-radius: 3%;
+}
