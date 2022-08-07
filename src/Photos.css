@@ -1,12 +1,11 @@
 .saved-photo {
   border: 1px solid black;
   border-radius: 3%;
-  width: 60.875vw;
-  height: 60.875vh;
+  width: 30.875vw;
+  height: 30.875vh;
 }
 
-.saved-wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 3em;
+.saved-photo:hover{
+  border: 1px solid white;
+  box-shadow: 0 0 40px rgb(0, 0, 0); 
 }

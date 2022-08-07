@@ -1,13 +1,13 @@
 import React from "react";
 import Photos from "./Photos";
-
+import './SavedImg.css'
 const SavedImg = ({savedImages}) => {
 
 const photos = savedImages.map(image => {
   return (
     <Photos
     src={image}
-    key={Date.now()}
+    key={Math.random() * 100}
     />
   )
 })
@@ -16,7 +16,7 @@ const photos = savedImages.map(image => {
 return (
   <>
   {savedImages.length !== 0 ? <>
-  <div>
+  <div className="saved-wrapper">
     {photos}
   </div>
   </>

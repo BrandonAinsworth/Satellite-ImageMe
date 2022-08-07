@@ -5,6 +5,7 @@ import Header from './Header';
 import Nav from './Nav';
 import Apod from './Apod';
 import SavedImg from './SavedImg';
+import asset from './assets/satellite_transmitting.gif'
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -12,13 +13,17 @@ import { Route, Switch } from 'react-router-dom';
 const App = () => {
 
   const apiKey = process.env.REACT_APP_API_KEY
+
   const [imageURL, setImage] = useState('')
   const [userLong, setLongitude] = useState('')
   const [userLat, setLatitude] = useState('')
   const [userDate, setDate] = useState('')
   const [savedImages, setSavedImage] = useState([])
+  const [loading, setLoading] = useState(false)
+
 
   const fetchData = () => {
+    setLoading(true)
     fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=${userDate}&&dim=0.12&api_key=${apiKey}`)
       .then(res => res.json())
       .then(data => {
@@ -29,7 +34,7 @@ const App = () => {
 
   const getCoords = (e, date) => {
     e.preventDefault()
-
+    setLoading(true)
     const options = {
       enableHighAccuracy: true,
       timeout: 1000000,
@@ -41,10 +46,6 @@ const App = () => {
       setLatitude(crd.latitude.toFixed(2).toString())
       setLongitude(crd.longitude.toFixed(2).toString())
       setDate(date)
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
     }
 
     function error(err) {
@@ -52,15 +53,19 @@ const App = () => {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
+    setLoading(false)
     setLatitude('')
     setLongitude('')
   }
 
   useEffect(() => {
+    {console.log(loading)}
     if (userLong && userDate) {
+      setLoading(true)
+      {console.log(loading)}
       fetchData()
     }
-  }, [userLat, userLong, userDate])
+  }, [userLat, userLong, userDate, loading])
 
 
   const saveImage = (e) => {
@@ -79,14 +84,20 @@ const App = () => {
     ?
       <> 
      <img className= 'satellite-image'alt= 'your location based on coordinates' src= {imageURL}></img> 
+     <p>Your coordinates are:<br></br>
+      Latitude: {userLat}<br></br>
+      Longitude: {userLong}<br></br>
+    </p>
      <button value= { imageURL } onClick= { saveImage }> Save this Image! 
      </button>
      </> 
-    :
+    :        
+    loading ? <img src={asset}></img> : <>
       <p>Your image will load here! <br></br> Expected wait: 5-10 seconds</p>
+      </>
     }
     </div> 
-    <Form getCoords= {getCoords} userDate= { userDate }  setDate= { setDate }/> 
+    <Form loading={loading} setLoading={setLoading} getCoords= {getCoords} userDate= { userDate }  setDate= { setDate }/> 
     </Route> 
     
     <Route exact path = '/dailyphoto'> 

@@ -6,9 +6,11 @@ html {
 .image-wrapper {
   display: flex;
   justify-content: center;
+  padding-top: 30px;
   padding-bottom: 30px;
+  flex-direction: column;
+  align-items: center;
 }
-
 
 
 .satellite-image {
