@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^10.4.0",
     "dotenv-webpack": "^8.0.0"
   }
 }
