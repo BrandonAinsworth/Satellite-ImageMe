@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom'
 import './Form.css';
 import dayjs from 'dayjs'
+import PropTypes from 'prop-types';
 
-const Form = ({getCoords, setDate, userDate, fetchSpecific, loading, setLoading}) => {
+const Form = ({getCoords, setDate, userDate, fetchSpecific, setLoading}) => {
 
 
 const location = useLocation()
@@ -14,7 +15,6 @@ const configureDate = (date) => {
 }
 
 const submissionType = (e) => {
-  console.log(location.pathname)
   if(location.pathname === '/') {
     setLoading(true)
    return getCoords(e, userDate)
@@ -32,8 +32,6 @@ const maxDateMaker = () => {
 }
 
 useEffect(() => {
-  console.log('hello form')
-  console.log(formDate)
   maxDateMaker()
 },[maxDateMaker, formDate])
 
@@ -58,3 +56,12 @@ return (
 )
 }
 export default Form;
+
+
+Form.propTypes = {
+  getCoords: PropTypes.func.isRequired,
+  setDate: PropTypes.func.isRequired,
+  userDate: PropTypes.string.isRequired,
+  fetchSpecific: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired
+}
