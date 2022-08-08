@@ -1,6 +1,9 @@
 import React from "react";
 import Photos from "./Photos";
-import './SavedImg.css'
+import './SavedImg.css';
+import PropTypes from 'prop-types';
+
+
 const SavedImg = ({savedImages}) => {
 
 const photos = savedImages.map(image => {
@@ -27,3 +30,7 @@ return (
 )
 }
 export default SavedImg;
+
+SavedImg.propTypes = {
+  savedImages: PropTypes.array.isRequired
+}

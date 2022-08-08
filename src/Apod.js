@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './Apod.css'
+import './Apod.css';
 import Form from './Form';
+import PropTypes from 'prop-types';
 
 
-const Astronomy = ({apiKey, saveImage}) => {
+const Apod = ({apiKey, saveImage}) => {
 
 const [apod, setApod] = useState({})
 
@@ -54,4 +55,9 @@ e.preventDefault()
 
 
 
-export default Astronomy;
+export default Apod;
+
+Apod.propTypes = {
+  apiKey: PropTypes.string.isRequired,
+  saveImage: PropTypes.func.isRequired
+}

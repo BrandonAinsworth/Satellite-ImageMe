@@ -1,5 +1,6 @@
 import React from "react";
 import './Photos.css'
+import PropTypes from 'prop-types';
 
 const Photos = ({src}) => {
 
@@ -14,3 +15,7 @@ return (
 
 
 export default Photos
+
+Photos.propTypes = {
+  src: PropTypes.string.isRequired
+}
