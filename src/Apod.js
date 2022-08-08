@@ -69,7 +69,7 @@ e.preventDefault()
   : <>  <div className='apod-wrapper'> <div className='wrapper-box'>
   <p>Want to see more images? Select any date below!</p>
   <Form setDate={setDate} userDate={userDate} fetchSpecific={fetchSpecific}/>
-  </div> <p>We encountered an error! Please try again. </p>  </div> </>}
+  </div> <p data-cy="error">We encountered an error! Please try again. </p>  </div> </>}
     </>
   )
 }

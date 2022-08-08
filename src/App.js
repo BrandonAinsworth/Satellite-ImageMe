@@ -91,7 +91,7 @@ const App = () => {
       <Route exact path = '/' >
         <div className = 'image-wrapper'> {userLat && userLong && userDate  ?
           <>   
-        {!error ? <img date-cy="sat-image" className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> : <p>Unfortunately we don't have that photo! Please try another date.</p> }
+        {!error ? <img date-cy="sat-image" className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> : <p data-cy="error">Unfortunately we don't have that photo! Please try another date.</p> }
         <p className='coordinates'>Your coordinates are:<br></br><br></br>
         <b>Latitude:</b> {userLat}<br></br><br></br>
         <b>Longitude:</b> {userLong}<br></br>
