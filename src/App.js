@@ -7,6 +7,7 @@ import Apod from './Apod';
 import SavedImg from './SavedImg';
 import About from './About';
 import asset from './assets/satellite_transmitting.gif'
+import Error from './Error';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -21,17 +22,26 @@ const App = () => {
   const [userDate, setDate] = useState('')
   const [savedImages, setSavedImage] = useState([])
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
 
   const fetchData = () => {
     setLoading(true)
     fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=${userDate}&&dim=0.12&api_key=${apiKey}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          setError(true)
+          throw new Error();
+      }
+      return res.json();
+    })
       .then(data => {
-        console.log(data)
         setImage(data.url);
       })
-  }
+    .catch((error) => {
+      console.log('ERROR!')
+    });
+  };
 
 
   const getCoords = (e, date) => {
@@ -60,10 +70,8 @@ const App = () => {
   }
 
   useEffect(() => {
-    {console.log(loading)}
     if (userLong && userDate) {
       setLoading(true)
-      {console.log(loading)}
       fetchData()
     }
   }, [userLat, userLong, userDate, loading])
@@ -80,37 +88,39 @@ const App = () => {
     <Header />
     <Nav />
     <Switch>
-    <Route exact path = '/' >
-    <div className = 'image-wrapper'> {userLat && userLong && userDate 
-    ?
-      <> 
-     <img date-cy="sat-image" className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> 
-     <p className='coordinates'>Your coordinates are:<br></br>
-     <b>Latitude:</b> {userLat}<br></br>
-     <b>Longitude:</b> {userLong}<br></br>
-    </p>
-     <button className='save-button' value= { imageURL } onClick= { saveImage }> Save this Image! 
-     </button>
-     </> 
-    :        
-    loading ? <img date-cy="load-image" className='load-image' src={asset}></img> : <>
-      <p data-cy="user-notice" className='user-notice'>Your image will load here!<br></br><br></br><b>Expected wait:</b> 5-10 seconds</p>
-      </>
-    }
-    </div> 
-    <Form loading={loading} setLoading={setLoading} getCoords= {getCoords} userDate= { userDate }  setDate= { setDate }/> 
-    </Route> 
-    
-    <Route exact path = '/dailyphoto'> 
-    <Apod apiKey = { apiKey } saveImage= { saveImage } setSavedImage= { setSavedImage } savedImages= { savedImages }
-    /> 
-    </Route> 
-    <Route path = '/savedphotos'>
-    <SavedImg savedImages= { savedImages }/> 
-    </Route>
-    <Route path = '/about'>
-      <About />
-    </Route>
+      <Route exact path = '/' >
+        <div className = 'image-wrapper'> {userLat && userLong && userDate  ?
+          <>   
+        {!error ? <img date-cy="sat-image" className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> : <p data-cy="error">Unfortunately we don't have that photo! Please try another date.</p> }
+        <p className='coordinates'>Your coordinates are:<br></br><br></br>
+        <b>Latitude:</b> {userLat}<br></br><br></br>
+        <b>Longitude:</b> {userLong}<br></br>
+        </p>
+        <button className='save-button' value= { imageURL } onClick= { saveImage }> Save this Image! 
+        </button>
+        </> 
+        :        
+        loading ? <img date-cy="load-image" className='load-image' src={asset}></img> : <>
+          <p data-cy="user-notice" className='user-notice'>Your image will load here!<br></br><br></br><b>Expected wait:</b> 5-10 seconds<br></br><br></br>
+          Simply select a date, and a satellite image of your location will be rendered.</p>
+          </>
+        }
+        </div> 
+        <Form loading={loading} setLoading={setLoading} getCoords= {getCoords} userDate= { userDate }  setDate= { setDate }/> 
+      </Route> 
+      
+      <Route exact path = '/dailyphoto'> 
+        <Apod apiKey = { apiKey } saveImage= { saveImage } setSavedImage= { setSavedImage } savedImages= { savedImages }/> 
+      </Route> 
+      <Route path = '/savedphotos'>
+        <SavedImg savedImages= { savedImages }/> 
+      </Route>
+      <Route path = '/about'>
+        <About />
+      </Route>
+      <Route 
+        path='/*' 
+        render={()=> <Error />}/>
     </Switch> 
  </>
  

@@ -55,6 +55,7 @@ button:hover {
   border: 2px solid blue;
   margin-top: 1.2em;
   padding: 3em;
+  text-align: center;
   border-radius: 3%;
 }
 
