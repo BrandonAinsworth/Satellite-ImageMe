@@ -38,7 +38,7 @@ return (
       or be stuck there for longer than anyones lifetime, adding to the ever-growing issue of a cluttered atmosphere.
     </p>
     <p className="about-content">Satellites generally serve 1-3 purposes, communication, navigation, and imaging. Here we will focus how imaging satellites operate.</p>
-    <p className="about-content">The satellite used by ImageMe through NASA and the USGS is called Landsat 8. It was launched February 11, 2013 and is part of a larger mission called Landsat, 
+    <p className="about-content">The satellite used by ImageMe through NASA and the USGS is called Landsat 8, sitting comfortably 435 miles above us. It was launched February 11, 2013 and is part of a larger mission called Landsat, 
       which has been sending land surveying satellites up into orbit since 1972. At the time of writing this, Landsat 9 has been launched but has not yet been incorportated in NASA's Earth API.</p>
     <p className="about-content">Important to note is that satellite imaging is used for much more than simply taking a picture like you may here on Earth. Satellites often come with a variety of
       sensors installed, and these sensors can view light, or rather, parts of the electromagnetic spectrum, that we humans cannot see. Think about using a microwave, you know that microwaves must be present when you use the device, but no matter how hard you squint, you can't see them! 

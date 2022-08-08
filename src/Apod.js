@@ -9,37 +9,54 @@ const Apod = ({apiKey, saveImage}) => {
 const [apod, setApod] = useState({})
 
 const [userDate, setDate] = useState('')
-
+const [error, setError] = useState(false)
 
 const fetchSpecific = (e) => {
 e.preventDefault()
 
   fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${userDate}`)
-  .then(res => res.json())
-  .then(data => {
-    console.log(data)
-  setApod(data)
+  .then(res => {
+    if (!res.ok) {
+      setError(true)
+      throw new Error();
+    }
+    return res.json();
+ })
+    .then(data => {
+      setApod(data)
   })
+  .catch((error) => {
+    console.log('ERROR!')
+  });
 }
 
 
   useEffect(() => {
     fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-    setApod(data)
+    .then(res => {
+      if(!res.ok) {
+        setError(true)
+        throw new Error();
+      }
+      return res.json();
     })
+    .then(data => {
+      setApod(data)
+    })
+    .catch((error) => {
+      console.log('ERROR!')
+    });
   },[])
 
 
   return (
     <>
+    {!error ?
     <div className='apod-wrapper'>
       <div className='wrapper-box'>
       <p>Want to see more images? Select any date below!</p>
       <Form setDate={setDate} userDate={userDate} fetchSpecific={fetchSpecific}/>
-      </div>
+      </div>  
     <p className='apod-title'>{apod.title}</p>
     <img className='apod-image' src={apod.url}></img>
     <button className='apod-button' value={apod.url} onClick={saveImage}>Save this Image!</button>
@@ -49,6 +66,10 @@ e.preventDefault()
       <p className='apod-date'><b>Date:</b> {apod.date}</p>
     </div>
     </div>
+  : <>  <div className='apod-wrapper'> <div className='wrapper-box'>
+  <p>Want to see more images? Select any date below!</p>
+  <Form setDate={setDate} userDate={userDate} fetchSpecific={fetchSpecific}/>
+  </div> <p>We encountered an error! Please try again. </p>  </div> </>}
     </>
   )
 }
