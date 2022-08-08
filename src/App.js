@@ -28,7 +28,6 @@ const App = () => {
     fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${userLong}&lat=${userLat}&date=${userDate}&&dim=0.12&api_key=${apiKey}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         setImage(data.url);
       })
   }
@@ -60,10 +59,8 @@ const App = () => {
   }
 
   useEffect(() => {
-    {console.log(loading)}
     if (userLong && userDate) {
       setLoading(true)
-      {console.log(loading)}
       fetchData()
     }
   }, [userLat, userLong, userDate, loading])
@@ -80,37 +77,36 @@ const App = () => {
     <Header />
     <Nav />
     <Switch>
-    <Route exact path = '/' >
-    <div className = 'image-wrapper'> {userLat && userLong && userDate 
-    ?
-      <> 
-     <img date-cy="sat-image" className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> 
-     <p className='coordinates'>Your coordinates are:<br></br>
-     <b>Latitude:</b> {userLat}<br></br>
-     <b>Longitude:</b> {userLong}<br></br>
-    </p>
-     <button className='save-button' value= { imageURL } onClick= { saveImage }> Save this Image! 
-     </button>
-     </> 
-    :        
-    loading ? <img date-cy="load-image" className='load-image' src={asset}></img> : <>
-      <p data-cy="user-notice" className='user-notice'>Your image will load here!<br></br><br></br><b>Expected wait:</b> 5-10 seconds</p>
-      </>
-    }
-    </div> 
-    <Form loading={loading} setLoading={setLoading} getCoords= {getCoords} userDate= { userDate }  setDate= { setDate }/> 
-    </Route> 
-    
-    <Route exact path = '/dailyphoto'> 
-    <Apod apiKey = { apiKey } saveImage= { saveImage } setSavedImage= { setSavedImage } savedImages= { savedImages }
-    /> 
-    </Route> 
-    <Route path = '/savedphotos'>
-    <SavedImg savedImages= { savedImages }/> 
-    </Route>
-    <Route path = '/about'>
-      <About />
-    </Route>
+      <Route exact path = '/' >
+        <div className = 'image-wrapper'> {userLat && userLong && userDate 
+        ?
+          <> 
+        <img date-cy="sat-image" className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> 
+        <p className='coordinates'>Your coordinates are:<br></br>
+        <b>Latitude:</b> {userLat}<br></br>
+        <b>Longitude:</b> {userLong}<br></br>
+        </p>
+        <button className='save-button' value= { imageURL } onClick= { saveImage }> Save this Image! 
+        </button>
+        </> 
+        :        
+        loading ? <img date-cy="load-image" className='load-image' src={asset}></img> : <>
+          <p data-cy="user-notice" className='user-notice'>Your image will load here!<br></br><br></br><b>Expected wait:</b> 5-10 seconds</p>
+          </>
+        }
+        </div> 
+        <Form loading={loading} setLoading={setLoading} getCoords= {getCoords} userDate= { userDate }  setDate= { setDate }/> 
+      </Route> 
+      
+      <Route exact path = '/dailyphoto'> 
+        <Apod apiKey = { apiKey } saveImage= { saveImage } setSavedImage= { setSavedImage } savedImages= { savedImages }/> 
+      </Route> 
+      <Route path = '/savedphotos'>
+        <SavedImg savedImages= { savedImages }/> 
+      </Route>
+      <Route path = '/about'>
+        <About />
+      </Route>
     </Switch> 
  </>
  

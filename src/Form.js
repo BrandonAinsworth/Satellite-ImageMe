@@ -40,6 +40,7 @@ return (
   <>
 <div className="form-wrapper">
   <div className='action-wrapper'>
+<form onSubmit={(e) => {submissionType(e)}}>
   <input
     data-cy="date-entry"
     className="date-field"
@@ -48,8 +49,8 @@ return (
     onChange={(event) => configureDate(event.target.value)}
     required
   />
-<button data-cy="button" className="btn" onClick={(e) => { submissionType(e) }}>To Infinity!
-</button>
+  <input data-cy="button" type="submit" className="btn" value='To Infinity!' />
+</form>
 </div>
 </div>
   </>
@@ -62,6 +63,6 @@ Form.propTypes = {
   getCoords: PropTypes.func.isRequired,
   setDate: PropTypes.func.isRequired,
   userDate: PropTypes.string.isRequired,
-  fetchSpecific: PropTypes.func.isRequired,
+  fetchSpecific: PropTypes.func,
   setLoading: PropTypes.func.isRequired
 }
