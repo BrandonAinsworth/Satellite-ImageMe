@@ -6,7 +6,7 @@ const Photos = ({src}) => {
 
 return (
   <>
-  <img className='saved-photo' src={src}></img>
+  <img data-cy="saved-photo" className='saved-photo' src={src}></img>
   </>
 )
 

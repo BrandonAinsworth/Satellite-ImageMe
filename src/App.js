@@ -84,7 +84,7 @@ const App = () => {
     <div className = 'image-wrapper'> {userLat && userLong && userDate 
     ?
       <> 
-     <img className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> 
+     <img date-cy="sat-image" className= 'satellite-image' alt='your location based on coordinates' src= {imageURL}></img> 
      <p className='coordinates'>Your coordinates are:<br></br>
      <b>Latitude:</b> {userLat}<br></br>
      <b>Longitude:</b> {userLong}<br></br>
@@ -93,8 +93,8 @@ const App = () => {
      </button>
      </> 
     :        
-    loading ? <img className='load-image' src={asset}></img> : <>
-      <p className='user-notice'>Your image will load here!<br></br><br></br><b>Expected wait:</b> 5-10 seconds</p>
+    loading ? <img date-cy="load-image" className='load-image' src={asset}></img> : <>
+      <p data-cy="user-notice" className='user-notice'>Your image will load here!<br></br><br></br><b>Expected wait:</b> 5-10 seconds</p>
       </>
     }
     </div> 

@@ -9,16 +9,16 @@ const Nav = () => {
   return (
     <div className="nav-bar">
       <Link to='/'>
-      <p className="nav-element">ImageMe</p>
+      <p data-cy="nav-elem" className="nav-element">ImageMe</p>
       </Link>
       <Link to='/dailyphoto'>
-      <p className="nav-element">Photo of the Day</p>
+      <p data-cy="nav-elem" className="nav-element">Photo of the Day</p>
       </Link>
       <Link to='/savedphotos'>
-        <p className="nav-element">Saved Photos</p>
+        <p data-cy="nav-elem" className="nav-element">Saved Photos</p>
       </Link>
       <Link to='/about'>
-        <p className="nav-element">About</p>
+        <p data-cy="nav-elem" className="nav-element">About</p>
       </Link>
     </div>
   )

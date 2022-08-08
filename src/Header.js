@@ -7,11 +7,11 @@ const Header = () => {
 return (
 <>
 <div className="header-wrap">
-  <p className="satellite-emoji">🛰</p>
+  <p data-cy="emoji" className="satellite-emoji">🛰</p>
   <Link to='/'>
-  <h1 className="header-h1">Satellite-ImageMe</h1>
+  <h1 data-cy="header-h1" className="header-h1">Satellite-ImageMe</h1>
   </Link>
-  <p className="satellite-emoji">🛰</p> 
+  <p data-cy="emoji" className="satellite-emoji">🛰</p> 
 </div>
 </>
 )
